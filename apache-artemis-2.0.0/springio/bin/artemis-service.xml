@@ -22,10 +22,10 @@
    <name>ActiveMQ Artemis: springio @ 0.0.0.0</name>
    <description>Apache ActiveMQ Artemis is a reliable messaging broker</description>
 
-   <env name="ARTEMIS_HOME" value="C:\Users\hoeckxer\Work\Github\springio2017\apache-artemis-2.0.0"/>
-   <env name="ARTEMIS_INSTANCE" value="C:\Users\hoeckxer\Work\Github\springio2017\apache-artemis-2.0.0\springio"/>
+   <env name="ARTEMIS_HOME" value="..\..\"/>
+   <env name="ARTEMIS_INSTANCE" value="..\"/>
 
-   <logpath>C:\Users\hoeckxer\Work\Github\springio2017\apache-artemis-2.0.0\springio\log</logpath>
+   <logpath>..\log</logpath>
    <logmode>roll</logmode>
 
    <executable>%JAVA_HOME%\bin\java.exe</executable>
