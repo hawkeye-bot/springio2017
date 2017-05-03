@@ -1,6 +1,6 @@
 *.class
 
-# target/
+target/
 
 apache-artemis-2.0.0/springio/data/*
 apache-artemis-2.0.0/springio/lock/*
