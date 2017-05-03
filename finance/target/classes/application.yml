@@ -1,4 +1,0 @@
-spring:
-    artemis:
-        user: springio
-        password: springio

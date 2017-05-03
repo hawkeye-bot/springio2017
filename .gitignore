@@ -1,5 +1,11 @@
 *.class
 
+# target/
+
+apache-artemis-2.0.0/springio/data/*
+apache-artemis-2.0.0/springio/lock/*
+apache-artemis-2.0.0/springio/log/*
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
