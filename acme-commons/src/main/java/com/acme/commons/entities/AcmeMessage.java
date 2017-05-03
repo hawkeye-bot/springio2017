@@ -16,4 +16,7 @@ public class AcmeMessage {
 
     @Column
     private String payload;
+
+    @Column
+    private String messageHeaderId;
 }
