@@ -5,23 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 /**
- * Entity to store the JMS message
+ * Article domain class
  *
  * @author ajorritsma
  */
 @Entity
-public class AcmeMessage {
+public class Article {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 
 	@Column
-	private String payload;
+	private String name;
 
 	@Column
-	private String messageId;
+	private BigDecimal price;
 
 	public Long getId() {
 		return id;
@@ -31,19 +32,19 @@ public class AcmeMessage {
 		this.id = id;
 	}
 
-	public String getPayload() {
-		return payload;
+	public String getName() {
+		return name;
 	}
 
-	public void setPayload(String payload) {
-		this.payload = payload;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getMessageId() {
-		return messageId;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setMessageId(String messageId) {
-		this.messageId = messageId;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 }

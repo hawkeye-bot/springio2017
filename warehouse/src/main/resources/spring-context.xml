@@ -3,20 +3,20 @@
 	   xmlns:tx="http://www.springframework.org/schema/tx"
 	   xmlns:context="http://www.springframework.org/schema/context"
 	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xmlns:jms="http://www.springframework.org/schema/jms"
-	   xmlns="http://www.springframework.org/schema/beans"
+	   xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-				http://www.springframework.org/schema/jms http://www.springframework.org/schema/aop/spring-jms.xsd
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-	              http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-	
+	              http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<import resource="spring-context-rest.xml"/>
+
 	<context:component-scan base-package="com.acme" />
 	
-	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>			
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 	
 	<!-- AOP -->
-	<aop:aspectj-autoproxy />	
+	<aop:aspectj-autoproxy />
 	
 	<!-- JPA -->
 	<bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
@@ -52,14 +52,16 @@
 			<bean id="postProcessorList" class="java.util.ArrayList">
 				<constructor-arg index="0">
 					<list>
-						<bean id="myPostProcessor" class="com.acme.warehouse.config.JtaDataSourcePersistenceUnitPostProcessor">
+						<bean class="com.acme.warehouse.config.JtaDataSourcePersistenceUnitPostProcessor">
 							<constructor-arg name="jtaDataSource" ref="dataSource"/>
 						</bean>
 					</list>
 				</constructor-arg>
 			</bean>
 		</property>
-	</bean>	
+	</bean>
+
+	<bean id="acmeMessageRepository" class="com.acme.warehouse.domain.repository.AcmeMessageRepository"/>
 	 
     <!-- JTA -->    
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -77,9 +79,22 @@
         <property name="userTransaction" ref="atomikosUserTransaction"/>
     </bean>
 
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.acme.warehouse.config.JtaTransactionController"/>
+		<property name="targetMethod" value="setTm"/>
+		<property name="arguments">
+			<list>
+				<ref bean="atomikosTransactionManager"/>
+			</list>
+		</property>
+	</bean>
+
 	<!-- JMS -->
 	<bean id="warehouseMessageListener" class="com.acme.warehouse.messaging.WarehouseMessageListener">
-
+		<constructor-arg name="acmeMessageTransformer">
+			<bean class="com.acme.warehouse.messaging.AcmeMessageTransformer"/>
+		</constructor-arg>
+		<constructor-arg name="acmeMessageRepository" ref="acmeMessageRepository"/>
 	</bean>
 
 	<bean id="jmsMessageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
@@ -92,7 +107,7 @@
 		<property name="sessionTransacted" value="true"/>
 		<property name="transactionManager" ref="transactionManager"/>
 	</bean>
-	
+
 	<!-- Property Files -->	
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="order" value="1"/>
