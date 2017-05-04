@@ -1,4 +1,4 @@
-package com.acme.warehouse.messaging;
+package com.acme.warehouse.messaging.dto.transformer;
 
 import com.acme.warehouse.domain.AcmeMessage;
 import org.apache.commons.collections4.Transformer;
@@ -17,6 +17,7 @@ public class AcmeMessageTransformer implements Transformer<TextMessage, AcmeMess
 		try {
 			AcmeMessage output = new AcmeMessage();
 			output.setMessageId(input.getJMSMessageID());
+			output.setType(input.getJMSType());
 			output.setPayload(input.getText());
 			return output;
 		} catch (JMSException e) {

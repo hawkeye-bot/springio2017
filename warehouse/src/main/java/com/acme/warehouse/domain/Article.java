@@ -3,7 +3,6 @@ package com.acme.warehouse.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
@@ -15,7 +14,7 @@ import java.math.BigDecimal;
 @Entity
 public class Article {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 
 	@Column
@@ -23,6 +22,9 @@ public class Article {
 
 	@Column
 	private BigDecimal price;
+
+	@Column
+	private Integer stock;
 
 	public Long getId() {
 		return id;
@@ -46,5 +48,13 @@ public class Article {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
 	}
 }

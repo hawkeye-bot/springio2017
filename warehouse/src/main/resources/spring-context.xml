@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-	              http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	              http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<import resource="spring-context-rest.xml"/>
 
@@ -23,7 +24,7 @@
 		<property name="uniqueResourceName" value="jpaDataSource"/>
 		<property name="xaDataSourceClassName" value="org.hsqldb.jdbc.pool.JDBCXADataSource"/>
 		<property name="minPoolSize" value="1"/>
-		<property name="maxPoolSize" value="3"/>
+        <property name="maxPoolSize" value="10"/>
 		<property name="borrowConnectionTimeout" value="1"/>
 		<property name="xaProperties">
 			<props>
@@ -34,7 +35,12 @@
 		</property>
 	</bean>
 
-	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>	
+    <bean id="databaseMigration" class="org.flywaydb.core.Flyway" init-method="migrate"
+          depends-on="dataSource">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -62,6 +68,10 @@
 	</bean>
 
 	<bean id="acmeMessageRepository" class="com.acme.warehouse.domain.repository.AcmeMessageRepository"/>
+
+    <bean id="articleRepository" class="com.acme.warehouse.domain.repository.ArticleRepository"/>
+
+    <bean id="orderRepository" class="com.acme.warehouse.domain.repository.OrderRepository"/>
 	 
     <!-- JTA -->    
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -92,9 +102,10 @@
 	<!-- JMS -->
 	<bean id="warehouseMessageListener" class="com.acme.warehouse.messaging.WarehouseMessageListener">
 		<constructor-arg name="acmeMessageTransformer">
-			<bean class="com.acme.warehouse.messaging.AcmeMessageTransformer"/>
+            <bean class="com.acme.warehouse.messaging.dto.transformer.AcmeMessageTransformer"/>
 		</constructor-arg>
 		<constructor-arg name="acmeMessageRepository" ref="acmeMessageRepository"/>
+        <constructor-arg name="messageHandlerMap" ref="messageHandlerMap"/>
 	</bean>
 
 	<bean id="jmsMessageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
@@ -108,7 +119,17 @@
 		<property name="transactionManager" ref="transactionManager"/>
 	</bean>
 
-	<!-- Property Files -->	
+    <util:map id="messageHandlerMap">
+        <entry key="ShipOrder" value-ref="shipOrderMessageHandler"/>
+    </util:map>
+
+    <bean id="shipOrderMessageHandler" class="com.acme.warehouse.messaging.messagehandler.ShipOrderMessageHandler">
+        <constructor-arg name="orderTransformer" ref="orderTransformer"/>
+        <constructor-arg name="orderRepository" ref="orderRepository"/>
+
+    </bean>
+
+    <!-- Property Files -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="order" value="1"/>
 		<property name="ignoreUnresolvablePlaceholders" value="false"/>
@@ -118,4 +139,8 @@
 			</list>
 		</property>
 	</bean>
+
+    <bean id="orderTransformer" class="com.acme.warehouse.messaging.dto.transformer.OrderTransformer">
+        <constructor-arg name="articleRepository" ref="articleRepository"/>
+    </bean>
 </beans>

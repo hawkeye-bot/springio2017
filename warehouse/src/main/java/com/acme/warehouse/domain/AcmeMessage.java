@@ -3,7 +3,6 @@ package com.acme.warehouse.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -14,11 +13,14 @@ import javax.persistence.Id;
 @Entity
 public class AcmeMessage {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 
 	@Column
 	private String payload;
+
+	@Column
+	private String type;
 
 	@Column
 	private String messageId;
@@ -37,6 +39,14 @@ public class AcmeMessage {
 
 	public void setPayload(String payload) {
 		this.payload = payload;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getMessageId() {

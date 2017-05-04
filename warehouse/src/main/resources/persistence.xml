@@ -7,7 +7,6 @@
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="eclipselink.cache.type.default" value="NONE" />
-			<property name="eclipselink.ddl-generation" value="create-tables" />
 			<property name="eclipselink.target-database" value="HSQL" />
 			<property name="eclipselink.target-server" value="com.acme.warehouse.config.JtaTransactionController" />
 			<property name="eclipselink.weaving" value="static" />
