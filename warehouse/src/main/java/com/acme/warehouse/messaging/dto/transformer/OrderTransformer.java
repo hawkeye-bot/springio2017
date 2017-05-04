@@ -13,7 +13,9 @@ import org.apache.commons.collections4.Transformer;
  * @author ajorritsma
  */
 public class OrderTransformer implements Transformer<ShipOrderVO, Order> {
-
+	/**
+	 * Repository to find the orderd articles
+	 */
 	private ArticleRepository articleRepository;
 
 	public OrderTransformer(ArticleRepository articleRepository) {

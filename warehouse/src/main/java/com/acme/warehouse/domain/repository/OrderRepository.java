@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Repository for orders.
+ * Repository to store orders.
  *
  * @author ajorritsma
  */

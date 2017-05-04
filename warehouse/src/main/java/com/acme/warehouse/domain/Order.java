@@ -16,13 +16,20 @@ import java.util.List;
  */
 @Entity
 public class Order {
+	/**
+	 * The id of the order
+	 */
 	@Id
 	@GeneratedValue
 	private Long id;
-
+	/**
+	 * The name of the customer who placed the order
+	 */
 	@Column
 	private String customerName;
-
+	/**
+	 * There is a orderline for every ordered article
+	 */
 	@OneToMany
 	@JoinColumn(name="ORDER_ID")
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();

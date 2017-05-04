@@ -16,10 +16,21 @@ import java.io.IOException;
  * @author ajorritsma
  */
 public class ShipOrderMessageHandler implements MessageHandler {
+	/**
+	 * Logger to log events
+	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShipOrderMessageHandler.class);
+	/**
+	 * ObjectMapper for JSON serialization
+	 */
 	private ObjectMapper objectMapper = new ObjectMapper();
-
+	/**
+	 * Transformer to translate the ShipOrderVO to a Order
+	 */
 	private OrderTransformer orderTransformer;
+	/**
+	 * Repository to store orders
+	 */
 	private OrderRepository orderRepository;
 
 	public ShipOrderMessageHandler(OrderTransformer orderTransformer, OrderRepository orderRepository) {
@@ -27,6 +38,10 @@ public class ShipOrderMessageHandler implements MessageHandler {
 		this.orderRepository = orderRepository;
 	}
 
+	/**
+	 * Handle the ShipOrderVO message. The order will be stored
+	 * @param message The message to handle
+	 */
 	public void handleMessage(String message) {
 		try {
 			ShipOrderVO shipOrderVO = objectMapper.reader(ShipOrderVO.class).readValue(message);

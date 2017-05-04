@@ -13,16 +13,25 @@ import java.math.BigDecimal;
  */
 @Entity
 public class Article {
+	/**
+	 * The id of the article
+	 */
 	@Id
 	@GeneratedValue
 	private Long id;
-
+	/**
+	 * The name of the article
+	 */
 	@Column
 	private String name;
-
+	/**
+	 * The price of the article
+	 */
 	@Column
 	private BigDecimal price;
-
+	/**
+	 * The current stock
+	 */
 	@Column
 	private Integer stock;
 

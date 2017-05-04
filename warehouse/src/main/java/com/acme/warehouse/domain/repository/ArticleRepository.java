@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * Repository for articles
+ * Repository to store articles
  *
  * @author ajorritsma
  */

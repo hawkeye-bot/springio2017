@@ -18,7 +18,7 @@ public class OrderLine {
 	private Long id;
 
 	@OneToOne
-	@JoinColumn(referencedColumnName = "ARTICLE_ID")
+	@JoinColumn(name = "ARTICLE_ID")
 	private Article article;
 
 	public Long getId() {

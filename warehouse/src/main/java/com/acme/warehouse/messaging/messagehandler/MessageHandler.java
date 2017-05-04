@@ -6,5 +6,9 @@ package com.acme.warehouse.messaging.messagehandler;
  * @author ajorritsma
  */
 public interface MessageHandler {
+	/**
+	 * Handle the message
+	 * @param message The message to handle
+	 */
 	void handleMessage(String message);
 }

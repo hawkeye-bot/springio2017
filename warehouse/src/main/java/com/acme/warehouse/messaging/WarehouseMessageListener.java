@@ -16,8 +16,17 @@ import java.util.Map;
  * @author ajorritsma
  */
 public class WarehouseMessageListener implements MessageListener {
+	/**
+	 * Transformer to translate a JMS message into a AcmeMessage
+	 */
 	private AcmeMessageTransformer acmeMessageTransformer;
+	/**
+	 * Repository to store messages
+	 */
 	private AcmeMessageRepository acmeMessageRepository;
+	/**
+	 * Map with messagehandlers
+	 */
 	private Map<String, MessageHandler> messageHandlerMap;
 
 	public WarehouseMessageListener(AcmeMessageTransformer acmeMessageTransformer, AcmeMessageRepository acmeMessageRepository,
@@ -27,6 +36,10 @@ public class WarehouseMessageListener implements MessageListener {
 		this.messageHandlerMap = messageHandlerMap;
 	}
 
+	/**
+	 * Store the AcmeMessage. Get and call the MessageHandler for the configured JMStype.
+	 * @param message The consumed JMS message
+	 */
 	public void onMessage(Message message) {
 		if (message instanceof TextMessage) {
 			AcmeMessage acmeMessage = acmeMessageTransformer.transform((TextMessage) message);

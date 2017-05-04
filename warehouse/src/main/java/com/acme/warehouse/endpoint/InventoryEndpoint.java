@@ -17,9 +17,15 @@ import java.util.List;
  */
 @Controller
 public class InventoryEndpoint {
+	/**
+	 * Repository to find the articles from the inventory
+	 */
 	@Autowired
 	private ArticleRepository articleRepository;
 
+	/**
+	 * @return Find all the articles
+	 */
 	@RequestMapping(value = "/inventory", method = RequestMethod.GET)
 	public @ResponseBody List<Article> findAll() {
 		return articleRepository.findAll();

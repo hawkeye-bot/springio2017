@@ -12,16 +12,25 @@ import javax.persistence.Id;
  */
 @Entity
 public class AcmeMessage {
+	/**
+	 * The id of the message
+	 */
 	@Id
 	@GeneratedValue
 	private Long id;
-
+	/**
+	 * The payload of the message
+	 */
 	@Column
 	private String payload;
-
+	/**
+	 * The JMS type
+	 */
 	@Column
 	private String type;
-
+	/**
+	 * The JMS messageId
+	 */
 	@Column
 	private String messageId;
 
