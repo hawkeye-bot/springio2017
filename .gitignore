@@ -1,10 +1,19 @@
 *.class
 
+target/
+
+apache-artemis-2.0.0/springio/data/*
+apache-artemis-2.0.0/springio/lock/*
+apache-artemis-2.0.0/springio/log/*
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
 # Package Files #
 *.jar
 *.war
 *.ear
 
-**/target/
-**/.idea/
-*.iml
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/warehouse/.idea
