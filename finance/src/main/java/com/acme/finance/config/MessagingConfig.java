@@ -1,5 +1,8 @@
-package com.acme.finance.messaging;
+package com.acme.finance.config;
 
+import com.acme.finance.messaging.MessageHandler;
+import com.acme.finance.messaging.ExecutePaymentHandler;
+import com.acme.finance.messaging.SendInvoiceHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +16,7 @@ import java.util.Map;
 @Configuration
 public class MessagingConfig {
     @Autowired
-    private ReceivePaymentHandler receivePaymentHandler;
+    private ExecutePaymentHandler executePaymentHandler;
 
     @Autowired
     private SendInvoiceHandler sendInvoiceHandler;
@@ -21,7 +24,7 @@ public class MessagingConfig {
     @Bean
     public Map<String, MessageHandler> messageHandlersMap() {
         Map<String, MessageHandler> result = new HashMap<>();
-        result.put("receivePayment",receivePaymentHandler);
+        result.put("receivePayment", executePaymentHandler);
         result.put("sendInvoice", sendInvoiceHandler);
         return result;
     }
