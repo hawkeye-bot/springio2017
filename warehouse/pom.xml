@@ -63,6 +63,20 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>project-repo</id>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>file://${project.basedir}/../repository</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<!-- Web -->
 		<dependency>
