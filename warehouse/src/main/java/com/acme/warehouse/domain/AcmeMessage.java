@@ -26,12 +26,12 @@ public class AcmeMessage {
 	/**
 	 * The JMS type
 	 */
-	@Column
+	@Column(name = "MESSAGE_TYPE")
 	private String type;
 	/**
 	 * The JMS messageId
 	 */
-	@Column
+	@Column(name = "MESSAGE_ID")
 	private String messageId;
 
 	public Long getId() {
