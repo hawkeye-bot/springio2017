@@ -17,7 +17,6 @@ rem specific language governing permissions and limitations
 rem under the License.
 
 set ARTEMIS_HOME="..\.."
-rem set ARTEMIS_HOME="C:\Users\hoeckxer\Work\Github\springio2017\apache-artemis-2.0.0"
 set ARTEMIS_INSTANCE="%ARTEMIS_HOME%\springio"
 
 rem Cluster Properties: Used to pass arguments to ActiveMQ Artemis which can be referenced in broker.xml
