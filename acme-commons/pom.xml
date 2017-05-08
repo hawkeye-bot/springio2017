@@ -2,8 +2,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.acme</groupId>
-    <artifactId>acme-commons</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>acme-commons-framework</artifactId>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>com.acme</groupId>
+        <artifactId>acme-commons-dependencies</artifactId>
+        <relativePath>acme-commons-dependencies</relativePath>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
     <repositories>
         <repository>
@@ -19,32 +26,9 @@
         </repository>
     </repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.6.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jms_2.0_spec</artifactId>
-            <version>RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>4.3.4.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.16</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>acme-commons-dependencies</module>
+        <module>acme-commons-starters</module>
+        <module>acme-commons-core</module>
+    </modules>
 </project>
