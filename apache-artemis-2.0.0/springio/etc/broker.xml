@@ -77,11 +77,11 @@ under the License.
 
       <!--
        This value was determined through a calculation.
-       Your system could perform 0.84 writes per millisecond
+       Your system could perform 14.71 writes per millisecond
        on the current journal configuration.
-       That translates as a sync write every 1188000 nanoseconds
+       That translates as a sync write every 68000 nanoseconds
       -->
-      <journal-buffer-timeout>1188000</journal-buffer-timeout>
+      <journal-buffer-timeout>68000</journal-buffer-timeout>
 
 
       <!-- how often we are looking for how many bytes are being used on the disk in ms -->
