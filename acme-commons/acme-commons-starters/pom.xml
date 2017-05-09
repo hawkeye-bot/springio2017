@@ -14,5 +14,7 @@
 
     <modules>
         <module>acme-commons-starter-parent</module>
+        <module>acme-commons-starter-logging</module>
+        <module>acme-commons-starter-web</module>
     </modules>
 </project>
