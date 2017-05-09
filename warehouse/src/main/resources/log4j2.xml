@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="nl.cjib.commons.logging">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT"/>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.atomikos" level="ERROR"/>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

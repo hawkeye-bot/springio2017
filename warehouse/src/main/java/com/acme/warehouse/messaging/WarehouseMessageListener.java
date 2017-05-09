@@ -2,12 +2,13 @@ package com.acme.warehouse.messaging;
 
 import com.acme.warehouse.domain.AcmeMessage;
 import com.acme.warehouse.domain.repository.AcmeMessageRepository;
-import com.acme.warehouse.messaging.dto.transformer.AcmeMessageTransformer;
 import com.acme.warehouse.messaging.messagehandler.MessageHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.stereotype.Component;
 
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -15,39 +16,34 @@ import java.util.Map;
  *
  * @author ajorritsma
  */
-public class WarehouseMessageListener implements MessageListener {
-	/**
-	 * Transformer to translate a JMS message into a AcmeMessage
-	 */
-	private AcmeMessageTransformer acmeMessageTransformer;
+@Component
+public class WarehouseMessageListener {
 	/**
 	 * Repository to store messages
 	 */
+	@Autowired
 	private AcmeMessageRepository acmeMessageRepository;
 	/**
 	 * Map with messagehandlers
 	 */
+	@Resource(name = "messageHandlersMap")
 	private Map<String, MessageHandler> messageHandlerMap;
-
-	public WarehouseMessageListener(AcmeMessageTransformer acmeMessageTransformer, AcmeMessageRepository acmeMessageRepository,
-			Map<String, MessageHandler> messageHandlerMap) {
-		this.acmeMessageTransformer = acmeMessageTransformer;
-		this.acmeMessageRepository = acmeMessageRepository;
-		this.messageHandlerMap = messageHandlerMap;
-	}
 
 	/**
 	 * Store the AcmeMessage. Get and call the MessageHandler for the configured JMStype.
 	 * @param message The consumed JMS message
 	 */
-	public void onMessage(Message message) {
-		if (message instanceof TextMessage) {
-			AcmeMessage acmeMessage = acmeMessageTransformer.transform((TextMessage) message);
+	@JmsListener(destination = "incomingQueue")
+	public void sendInvoice(String message, @Header("JMSMessageID") String messageId, @Header("JMSType") String jmsType) {
+		AcmeMessage acmeMessage = new AcmeMessage();
+		acmeMessage.setType(jmsType);
+		acmeMessage.setMessageId(messageId);
+		acmeMessage.setPayload(message);
 
-			acmeMessageRepository.save(acmeMessage);
+		acmeMessageRepository.save(acmeMessage);
 
-			MessageHandler messageHandler = messageHandlerMap.get(acmeMessage.getType());
-			messageHandler.handleMessage(acmeMessage.getPayload());
-		}
+		MessageHandler messageHandler = messageHandlerMap.get(acmeMessage.getType());
+		messageHandler.handleMessage(acmeMessage.getPayload());
+
 	}
 }

@@ -18,6 +18,7 @@
         <acme-commons.version>1.0.0-SNAPSHOT</acme-commons.version>
         <eclipselink.version>2.6.4</eclipselink.version>
         <lombok.version>1.16.16</lombok.version>
+        <springboot.version>1.5.3.RELEASE</springboot.version>
     </properties>
 
     <dependencyManagement>
@@ -25,6 +26,21 @@
             <dependency>
                 <groupId>com.acme</groupId>
                 <artifactId>acme-commons-core</artifactId>
+                <version>${acme-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acme</groupId>
+                <artifactId>acme-commons-starter-logging</artifactId>
+                <version>${acme-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acme</groupId>
+                <artifactId>acme-commons-starter-parent</artifactId>
+                <version>${acme-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acme</groupId>
+                <artifactId>acme-commons-starter-web</artifactId>
                 <version>${acme-commons.version}</version>
             </dependency>
             <dependency>

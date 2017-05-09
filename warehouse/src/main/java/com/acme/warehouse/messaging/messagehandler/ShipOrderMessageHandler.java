@@ -2,11 +2,13 @@ package com.acme.warehouse.messaging.messagehandler;
 
 import com.acme.warehouse.domain.Order;
 import com.acme.warehouse.domain.repository.OrderRepository;
-import com.acme.warehouse.messaging.dto.transformer.OrderTransformer;
 import com.acme.warehouse.messaging.dto.ShipOrderVO;
+import com.acme.warehouse.messaging.dto.transformer.OrderTransformer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -15,6 +17,7 @@ import java.io.IOException;
  *
  * @author ajorritsma
  */
+@Component
 public class ShipOrderMessageHandler implements MessageHandler {
 	/**
 	 * Logger to log events
@@ -27,16 +30,13 @@ public class ShipOrderMessageHandler implements MessageHandler {
 	/**
 	 * Transformer to translate the ShipOrderVO to a Order
 	 */
+	@Autowired
 	private OrderTransformer orderTransformer;
 	/**
 	 * Repository to store orders
 	 */
+	@Autowired
 	private OrderRepository orderRepository;
-
-	public ShipOrderMessageHandler(OrderTransformer orderTransformer, OrderRepository orderRepository) {
-		this.orderTransformer = orderTransformer;
-		this.orderRepository = orderRepository;
-	}
 
 	/**
 	 * Handle the ShipOrderVO message. The order will be stored
