@@ -8,8 +8,9 @@
 
     <parent>
         <groupId>com.acme</groupId>
-        <artifactId>acme-commons-framework</artifactId>
+        <artifactId>acme-commons-dependencies</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../acme-commons-dependencies</relativePath>
     </parent>
 
     <modules>
