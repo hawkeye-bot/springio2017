@@ -30,6 +30,7 @@ public class OrderTransformer implements Transformer<ShipOrderVO, Order> {
 			Article article = articleRepository.findById(articleId);
 
 			OrderLine orderLine = new OrderLine();
+			orderLine.setOrder(order);
 			orderLine.setArticle(article);
 
 			order.getOrderLines().add(orderLine);
