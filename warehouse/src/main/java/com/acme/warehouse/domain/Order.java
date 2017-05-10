@@ -1,11 +1,6 @@
 package com.acme.warehouse.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +25,7 @@ public class Order {
 	/**
 	 * There is a orderline for every ordered article
 	 */
-	@OneToMany
-	@JoinColumn(name="ORDER_ID")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 
 	public Long getId() {

@@ -3,7 +3,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.acme</groupId>
     <artifactId>acme-commons-starters</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <parent>
@@ -18,4 +17,9 @@
         <module>acme-commons-starter-logging</module>
         <module>acme-commons-starter-web</module>
     </modules>
+
+    <!-- The next part is only to facilitate the local repository for the workshop -->
+    <properties>
+        <rootUrl>${project.basedir}/../..</rootUrl>
+    </properties>
 </project>

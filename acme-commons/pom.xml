@@ -6,23 +6,26 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>acme-commons-dependencies</module>
+        <module>acme-commons-core</module>
+        <module>acme-commons-starters</module>
+    </modules>
+
+    <!-- The next part is only to facilitate the local repository for the workshop -->
+    <properties>
+        <rootUrl>${project.basedir}/..</rootUrl>
+    </properties>
     <repositories>
         <repository>
             <id>project-repo</id>
-            <releases>
-                <enabled>true</enabled>
-                <checksumPolicy>ignore</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>file://${project.basedir}/../repository</url>
+            <url>file://${rootUrl}/repository</url>
         </repository>
     </repositories>
-
-    <modules>
-        <module>acme-commons-dependencies</module>
-        <module>acme-commons-starters</module>
-        <module>acme-commons-core</module>
-    </modules>
+    <distributionManagement>
+        <repository>
+            <id>project-repo</id>
+            <url>file://${rootUrl}/repository</url>
+        </repository>
+    </distributionManagement>
 </project>

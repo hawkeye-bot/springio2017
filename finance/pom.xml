@@ -30,7 +30,7 @@
     </dependency>
     <dependency>
       <groupId>com.acme</groupId>
-      <artifactId>acme-commons</artifactId>
+      <artifactId>acme-commons-core</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
@@ -39,17 +39,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <!-- The next part is only to facilitate the local repository for the workshop -->
   <repositories>
     <repository>
       <id>project-repo</id>
-      <releases>
-        <enabled>true</enabled>
-        <checksumPolicy>ignore</checksumPolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
       <url>file://${project.basedir}/../repository</url>
     </repository>
   </repositories>
+  <distributionManagement>
+    <repository>
+      <id>project-repo</id>
+      <url>file://${project.basedir}/repository</url>
+    </repository>
+  </distributionManagement>
 </project>

@@ -1,103 +1,87 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.acme</groupId>
-	<artifactId>warehouse</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<name>warehouse</name>
-	<description>warehouse</description>
-	<url>www.acme.com/warehouse</url>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.acme</groupId>
+    <artifactId>warehouse</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>warehouse</name>
+    <description>warehouse</description>
+    <url>www.acme.com/warehouse</url>
 
-	<parent>
-		<groupId>com.acme</groupId>
-		<artifactId>acme-commons-starter-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>com.acme</groupId>
+        <artifactId>acme-commons-starter-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
-	<properties>
-		<java.version>1.8</java.version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
-		<flyway.version>3.2.1</flyway.version>
-		<hsqldb.version>2.3.2</hsqldb.version>
-	</properties>
+    <dependencies>
+        <!-- Web -->
+        <dependency>
+            <groupId>com.acme</groupId>
+            <artifactId>acme-commons-starter-web</artifactId>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
-	<repositories>
-		<repository>
-			<id>project-repo</id>
-			<releases>
-				<enabled>true</enabled>
-				<checksumPolicy>ignore</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<url>file://${project.basedir}/../repository</url>
-		</repository>
-	</repositories>
-
-	<dependencies>
-		<!-- Web -->
-		<dependency>
-			<groupId>com.acme</groupId>
-			<artifactId>acme-commons-starter-web</artifactId>
-		</dependency>
-
-		<!-- JPA -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>${hsqldb.version}</version>
-		</dependency>
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>${flyway.version}</version>
         </dependency>
 
-		<!-- JTA -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jta-atomikos</artifactId>
-		</dependency>
+        <!-- JTA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jta-atomikos</artifactId>
+        </dependency>
 
-		<!-- JMS -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-artemis</artifactId>
-		</dependency>
+        <!-- JMS -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-artemis</artifactId>
+        </dependency>
 
-		<!-- Logging -->
-		<dependency>
-			<groupId>com.acme</groupId>
-			<artifactId>acme-commons-starter-logging</artifactId>
-		</dependency>
+        <!-- Logging -->
+        <dependency>
+            <groupId>com.acme</groupId>
+            <artifactId>acme-commons-starter-logging</artifactId>
+        </dependency>
 
-		<!-- other -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-			<version>4.1</version>
-		</dependency>
+        <!-- other -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
 
         <!-- test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	</dependencies>
+    <!-- The next part is only to facilitate the local repository for the workshop -->
+    <repositories>
+        <repository>
+            <id>project-repo</id>
+            <url>file://${project.basedir}/../repository</url>
+        </repository>
+    </repositories>
 </project>

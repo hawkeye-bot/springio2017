@@ -9,30 +9,8 @@
         <groupId>com.acme</groupId>
         <artifactId>acme-commons-dependencies</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../../acme-commons-dependencies</relativePath>
     </parent>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${springboot.version}</version>
-                    <configuration>
-                        <executable>true</executable>
-                        <excludeDevtools>true</excludeDevtools>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 
     <dependencies>
         <dependency>
@@ -41,5 +19,10 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <java.version>1.8</java.version>
 
+    <!-- The next part is only to facilitate the local repository for the workshop -->
+        <rootUrl>${project.basedir}/../../..</rootUrl>
+    </properties>
 </project>
