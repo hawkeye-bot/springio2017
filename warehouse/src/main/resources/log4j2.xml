@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" packages="nl.cjib.commons.logging">
+<Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <layout class="org.apache.log4j.PatternLayout">
-                <param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
-            </layout>
+            <PatternLayout pattern="[%-5p] %d %c - %m%n"/>
         </Console>
     </Appenders>
     <Loggers>
