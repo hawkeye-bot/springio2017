@@ -10,6 +10,7 @@ import java.util.List;
  * @author ajorritsma
  */
 @Entity
+@Table(name = "ORDERS")
 public class Order {
 	/**
 	 * The id of the order
