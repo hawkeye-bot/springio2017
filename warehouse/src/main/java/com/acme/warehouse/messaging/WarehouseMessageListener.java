@@ -5,7 +5,8 @@ import com.acme.warehouse.domain.repository.AcmeMessageRepository;
 import com.acme.warehouse.messaging.messagehandler.MessageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -33,11 +34,11 @@ public class WarehouseMessageListener {
 	 * Store the AcmeMessage. Get and call the MessageHandler for the configured JMStype.
 	 * @param message The consumed JMS message
 	 */
-	@JmsListener(destination = "incomingQueue")
-	public void sendInvoice(String message, @Header("JMSMessageID") String messageId, @Header("JMSType") String jmsType) {
+	@JmsListener(destination = "ACME.WAREHOUSE")
+	public void sendInvoice(String message, @Headers MessageHeaders messageHeaders) {
 		AcmeMessage acmeMessage = new AcmeMessage();
-		acmeMessage.setType(jmsType);
-		acmeMessage.setMessageId(messageId);
+		acmeMessage.setType(messageHeaders.get("jms_type", String.class));
+		acmeMessage.setMessageId(messageHeaders.getId().toString());
 		acmeMessage.setPayload(message);
 
 		acmeMessageRepository.save(acmeMessage);

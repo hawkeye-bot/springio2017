@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 
@@ -42,9 +44,10 @@ public class ShipOrderMessageHandler implements MessageHandler {
 	 * Handle the ShipOrderVO message. The order will be stored
 	 * @param message The message to handle
 	 */
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void handleMessage(String message) {
 		try {
-			ShipOrderVO shipOrderVO = objectMapper.reader(ShipOrderVO.class).readValue(message);
+			ShipOrderVO shipOrderVO = objectMapper.readerFor(ShipOrderVO.class).readValue(message);
 
 			Order order = orderTransformer.transform(shipOrderVO);
 

@@ -39,6 +39,7 @@
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -80,10 +81,9 @@
     </dependencies>
 
     <!-- The next part is only to facilitate the local repository for the workshop -->
-    <repositories>
-        <repository>
-            <id>project-repo</id>
-            <url>file://${project.basedir}/../repository</url>
-        </repository>
-    </repositories>
+    <properties>
+        <rootUrl>${project.basedir}/..</rootUrl>
+        <artemis.version>2.0.0</artemis.version>
+    </properties>
+
 </project>

@@ -8,6 +8,7 @@ import javax.persistence.*;
  * @author ajorritsma
  */
 @Entity
+@Table(name = "ORDERLINES")
 public class OrderLine {
 	@Id
 	@GeneratedValue
