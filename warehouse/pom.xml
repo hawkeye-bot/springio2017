@@ -28,6 +28,7 @@
         <dependency>
             <groupId>com.acme</groupId>
             <artifactId>acme-commons-starter-web</artifactId>
+            <type>pom</type>
         </dependency>
 
         <!-- JPA -->
@@ -61,6 +62,7 @@
         <dependency>
             <groupId>com.acme</groupId>
             <artifactId>acme-commons-starter-logging</artifactId>
+            <type>pom</type>
         </dependency>
 
         <!-- other -->
