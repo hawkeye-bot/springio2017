@@ -27,7 +27,7 @@ public class OrderTransformer implements Transformer<ShipOrderVO, Order> {
 		order.setCustomerName(input.getCustomerName());
 
 		for (Long articleId : input.getArticleIds()) {
-			Article article = articleRepository.findById(articleId);
+			Article article = articleRepository.findOne(articleId);
 
 			OrderLine orderLine = new OrderLine();
 			orderLine.setOrder(order);
