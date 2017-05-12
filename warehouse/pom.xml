@@ -10,11 +10,11 @@
 	<url>www.acme.com/warehouse</url>
 
 	<properties>
-		<artemis.version>1.5.3</artemis.version>
+		<artemis.version>2.0.0</artemis.version>
 		<atomikos.version>3.9.3</atomikos.version>
 		<eclipselink.version>2.6.2</eclipselink.version>
         <flyway.version>3.2.1</flyway.version>
-		<hsqldb.version>2.3.2</hsqldb.version>
+		<hsqldb.version>2.3.5</hsqldb.version>
 		<jetty.server.version>9.2.10.v20150310</jetty.server.version>
 		<spring.version>3.2.8.RELEASE</spring.version>
 	</properties>
@@ -50,6 +50,8 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.server.version}</version>
 				<configuration>
+					<stopPort>9999</stopPort>
+					<stopKey>springio</stopKey>
 					<webApp>
 						<contextPath>/</contextPath>
 						<webInfIncludeJarPattern>-</webInfIncludeJarPattern>
@@ -62,20 +64,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>project-repo</id>
-			<releases>
-				<enabled>true</enabled>
-				<checksumPolicy>ignore</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<url>file://${project.basedir}/../repository</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<!-- Web -->
@@ -219,4 +207,18 @@
         </dependency>
 
 	</dependencies>
+
+	<!-- The next part is only to facilitate the local repository for the workshop -->
+	<repositories>
+		<repository>
+			<id>project-repo</id>
+			<url>file://${project.basedir}/../repository</url>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>project-repo</id>
+			<url>file://${project.basedir}/repository</url>
+		</repository>
+	</distributionManagement>
 </project>

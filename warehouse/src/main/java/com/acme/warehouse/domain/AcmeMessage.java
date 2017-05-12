@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Entity to store the JMS message
@@ -11,6 +12,7 @@ import javax.persistence.Id;
  * @author ajorritsma
  */
 @Entity
+@Table(name = "ACMEMESSAGES")
 public class AcmeMessage {
 	/**
 	 * The id of the message

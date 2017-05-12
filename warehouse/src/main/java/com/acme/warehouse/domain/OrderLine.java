@@ -1,10 +1,6 @@
 package com.acme.warehouse.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Entity to store orderlines.
@@ -12,6 +8,7 @@ import javax.persistence.OneToOne;
  * @author ajorritsma
  */
 @Entity
+@Table(name = "ORDERLINES")
 public class OrderLine {
 	@Id
 	@GeneratedValue
@@ -20,6 +17,11 @@ public class OrderLine {
 	@OneToOne
 	@JoinColumn(name = "ARTICLE_ID")
 	private Article article;
+
+	@ManyToOne
+	@JoinColumn(name = "ORDER_ID")
+
+	private Order order;
 
 	public Long getId() {
 		return id;
@@ -35,5 +37,13 @@ public class OrderLine {
 
 	public void setArticle(Article article) {
 		this.article = article;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 }
