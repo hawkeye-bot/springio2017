@@ -1,4 +1,4 @@
-package com.acme.commons.autoconfigure.database;
+package com.acme.commons.autoconfigure.datasource;
 
 import com.acme.commons.entities.AcmeMessage;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

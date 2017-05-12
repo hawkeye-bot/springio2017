@@ -1,7 +1,5 @@
-package nl.cjib.commons.autoconfigure.datasource.cms;
+package com.acme.commons.autoconfigure.datasource;
 
-import com.acme.commons.autoconfigure.database.CommonsDatabaseAutoConfiguration;
-import com.acme.commons.autoconfigure.database.DatabaseInitializerMigrationStrategy;
 import org.junit.Test;
 import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;

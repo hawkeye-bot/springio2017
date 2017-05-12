@@ -1,4 +1,4 @@
-package com.acme.commons.autoconfigure.database;
+package com.acme.commons.autoconfigure.datasource;
 
 import org.flywaydb.core.Flyway;
 import org.slf4j.Logger;

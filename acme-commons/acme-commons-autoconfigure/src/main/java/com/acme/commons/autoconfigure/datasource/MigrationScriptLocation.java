@@ -1,4 +1,4 @@
-package com.acme.commons.autoconfigure.database;
+package com.acme.commons.autoconfigure.datasource;
 
 /**
  * Interface that can be used to specify a folder in which database migration scripts can be found during the

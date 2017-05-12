@@ -1,4 +1,4 @@
-package com.acme.commons.autoconfigure.database;
+package com.acme.commons.autoconfigure.datasource;
 
 /**
  * Interface that can be used to initialize on the database. These initializers will be executed before, for example, the application sql scripts are executed with flyway.
