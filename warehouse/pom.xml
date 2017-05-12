@@ -24,6 +24,10 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.acme</groupId>
+            <artifactId>acme-commons-autoconfigure</artifactId>
+        </dependency>
         <!-- Web -->
         <dependency>
             <groupId>com.acme</groupId>
