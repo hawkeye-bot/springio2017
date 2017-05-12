@@ -35,7 +35,7 @@ public class WarehouseMessageListener {
 	 * @param message The consumed JMS message
 	 */
 	@JmsListener(destination = "ACME.WAREHOUSE")
-	public void sendInvoice(String message, @Headers MessageHeaders messageHeaders) {
+	public void handleMessage(String message, @Headers MessageHeaders messageHeaders) {
 		AcmeMessage acmeMessage = new AcmeMessage();
 		acmeMessage.setType(messageHeaders.get("jms_type", String.class));
 		acmeMessage.setMessageId(messageHeaders.getId().toString());

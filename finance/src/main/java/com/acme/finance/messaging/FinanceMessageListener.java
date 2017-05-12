@@ -22,7 +22,7 @@ public class FinanceMessageListener {
     private Map<String, MessageHandler> handlers;
 
     @JmsListener(destination = "incomingQueue")
-    public void sendInvoice(String message, @Header("messageId") String messageId, @Header("JmsType") String jmsType) {
+    public void handleMessage(String message, @Header("messageId") String messageId, @Header("JmsType") String jmsType) {
         AcmeMessage msg = new AcmeMessage();
         msg.setMessageHeaderId(messageId);
         msg.setPayload(message);
