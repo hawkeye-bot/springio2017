@@ -25,6 +25,11 @@
         <dependencies>
             <dependency>
                 <groupId>com.acme</groupId>
+                <artifactId>acme-commons-autoconfigure</artifactId>
+                <version>${acme-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acme</groupId>
                 <artifactId>acme-commons-core</artifactId>
                 <version>${acme-commons.version}</version>
             </dependency>
