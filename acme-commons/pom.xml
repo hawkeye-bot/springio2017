@@ -9,6 +9,7 @@
     <modules>
         <module>acme-commons-dependencies</module>
         <module>acme-commons-core</module>
+        <module>acme-commons-autoconfigure</module>
         <module>acme-commons-starters</module>
     </modules>
 

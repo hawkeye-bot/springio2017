@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.acme.commons.autoconfigure.datasource.DatabaseInitializerMigrationStrategy,\
+com.acme.commons.autoconfigure.datasource.CommonsDatabaseAutoConfiguration
