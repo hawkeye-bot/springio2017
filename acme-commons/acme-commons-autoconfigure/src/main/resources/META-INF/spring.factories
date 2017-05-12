@@ -1,3 +1,5 @@
+org.springframework.context.ApplicationListener=\
+com.acme.commons.autoconfigure.DefaultPropertyLoader
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.acme.commons.autoconfigure.datasource.DatabaseInitializerMigrationStrategy,\
 com.acme.commons.autoconfigure.datasource.CommonsDatabaseAutoConfiguration
