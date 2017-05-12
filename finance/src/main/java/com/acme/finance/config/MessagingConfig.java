@@ -25,7 +25,7 @@ public class MessagingConfig {
     public Map<String, MessageHandler> messageHandlersMap() {
         Map<String, MessageHandler> result = new HashMap<>();
         result.put("receivePayment", executePaymentHandler);
-        result.put("sendInvoice", sendInvoiceHandler);
+        result.put("printLetter", sendInvoiceHandler);
         return result;
     }
 }
