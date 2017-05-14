@@ -28,6 +28,10 @@
             <groupId>com.acme</groupId>
             <artifactId>acme-commons-autoconfigure</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.acme</groupId>
+            <artifactId>acme-commons-core</artifactId>
+        </dependency>
         <!-- Web -->
         <dependency>
             <groupId>com.acme</groupId>

@@ -20,8 +20,8 @@ import java.util.Map;
 
 @Configuration
 public class MessageListenerConfiguration {
-	@Autowired(required = false)
-	@SuppressWarnings("SpringJavaAutowiringInspection")
+	@Autowired
+    @SuppressWarnings("SpringJavaAutowiringInspection")
 	private AcmeMessageRepository acmeMessageRepository;
 
 	@Resource(name = "messageHandlersMap")
