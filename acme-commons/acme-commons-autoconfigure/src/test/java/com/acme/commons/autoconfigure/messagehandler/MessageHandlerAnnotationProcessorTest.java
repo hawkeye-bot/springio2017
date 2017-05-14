@@ -39,13 +39,28 @@ public class MessageHandlerAnnotationProcessorTest {
 	public void testHandlerWithAnnotationProcessedDefault() {
 		// prepare + execute
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext()) {
-			context.register(AnnotatedBeanConfiguration.class, DataSourceAutoConfiguration.class, MessageHandlerAnnotationProcessor.class, MessageListenerConfiguration.class);
+			context.register(DataSourceAutoConfiguration.class, AnnotatedBeanConfiguration.class, MessageHandlerAnnotationProcessor.class, MessageListenerConfiguration.class);
 			context.refresh();
 
 			// verify
 			Map<String, ?> messageHandlersMap = (Map<String, ?>) context.getBean("messageHandlersMap");
 			assertEquals(1, messageHandlersMap.size());
 			assertNotNull(messageHandlersMap.get("TYPE"));
+		}
+	}
+
+	@Test
+	public void testHandlerWithAnnotationOnClassProcessed() {
+		// prepare + execute
+		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext()) {
+			context.register(DataSourceAutoConfiguration.class, MessageHandlerWithAnnotationOnClassConfiguration.class,
+					MessageHandlerAnnotationProcessor.class, MessageHandlerAutoConfiguration.class);
+			context.refresh();
+
+			// verify
+			Map<String, ?> messageHandlersMap = (Map<String, ?>) context.getBean("messageHandlersMap");
+			assertEquals(1, messageHandlersMap.size());
+			assertNotNull(messageHandlersMap.get("MH_CLASS_ANN"));
 		}
 	}
 
@@ -64,5 +79,16 @@ public class MessageHandlerAnnotationProcessorTest {
 			return mock(MessageHandler.class);
 		}
 
+	}
+
+	@Configuration
+	public static class MessageHandlerWithAnnotationOnClassConfiguration {
+		@MessageHandlerBean(type = "MH_CLASS_ANN")
+		public static class MessageHandlerWithAnnotationOnClass implements MessageHandler {
+			@Override
+			public void handleMessage(String message) {
+
+			}
+		}
 	}
 }
