@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jms_2.0_spec</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <optional>true</optional>
@@ -28,6 +33,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>com.acme</groupId>
             <artifactId>acme-commons-core</artifactId>
             <optional>true</optional>
@@ -38,6 +48,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <!-- The next part is only to facilitate the local repository for the workshop -->
