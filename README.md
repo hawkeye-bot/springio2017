@@ -2,11 +2,11 @@
 # Lab 2:
 Welcome to lab 2. 
 
-In this lab you will learn how to create and use a custom Spring Boot autoconfigure module which adds a more flexible Flyway migration strategy. 
+In this lab you will learn how to create and use a custom Spring Boot autoconfigure module, which adds a more flexible Flyway migration strategy. 
 
 The custom Flyway migration strategy is able to run Flyway database migration scripts from different modules. Because we added the script for the AcmeMessage entity to the acme-commons-core module, this SQL script is needed to setup the table in the HSQL database. After Flyway added the AcmeMessage table, the application specific database objects or scripts need to be installed.
  
-The CommonsDatabaseAutconfiguration module is a specific Flyway migration strategy. First it will start the DatabasePreInitializers. The CommonsDatabaseInitializer is a Spring bean that implements the DatabasePreInitializer. The DatabaseInitializerMigrationStrategy is a Flyway migration strategy that will start Flyway with the MigrationScriptLocation beans to indicate the correct locations for the SQL scripts. In the HsqldbLocationConfiguration configuration class the bean for the location of the acme-commons-core SQL scripts will be added. 
+The CommonsDatabaseAutoConfiguration module is a specific Flyway migration strategy. First it will start the DatabasePreInitializers. The CommonsDatabaseInitializer is a Spring bean that implements the DatabasePreInitializer. The DatabaseInitializerMigrationStrategy is a Flyway migration strategy that will start Flyway with the MigrationScriptLocation beans to indicate the correct locations for the SQL scripts. In the HsqldbLocationConfiguration configuration class the bean for the location of the acme-commons-core SQL scripts will be added. 
  
 ## Steps in the acme-commons-autoconfigure
 1. Add the Commons Database autoconfigure module to the 'spring.factories' file in the acme-commons-autoconfigure module
