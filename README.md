@@ -2,14 +2,14 @@
 # Lab 3:
 Welcome to lab 3. 
 
-In this lab you will learn how to create and use a custom Spring Boot autoconfigure module in which you will add a default JMS messagelistener. 
+In this lab you will learn how to create and use a custom Spring Boot autoconfigure module in which you will add a default JMS messagelistener.
 
 The JMS messagelistener receives the message from a queue en saves the JMS message as a AcmeMessage in the HSQL database. The messagelistener doesn't handle the message itself, but delegates this to a messagehandler. For each message type, a specific message handler is configured, which is responsible for processing the message.
  
 A messagehandler is a Spring bean annotated with the custom @MessageHandlerBean annotation. In a BeanPostProcessor all the beans annotated with the @MessageHandler bean annotation are added to the MessageHandlersMap bean (a Map with the JMStype as the key and the MessageHandler as the value), which will be autowired in the MessageListener bean. 
  
 ## Steps in the acme-commons-autoconfigure
-1. Add the MessageHandler autoconfigure module to the 'spring.factories' file in the acme-commons-autoconfigure module
+1. Add the MessageHandler autoconfigure class to the 'spring.factories' file in the acme-commons-autoconfigure module
 2. Complete the logic needed in the MessageHandlerAnnotationProcessor
 3. Find the correct MessageHandler in the MessageListener (MessageListenerConfiguration class) and handle the ShipOrder message with the ShipOrderMessageHandler.
 4. Build and deploy the acme-commons-framework
