@@ -6,7 +6,7 @@ In this lab you will learn how to create and use a custom Spring Boot starter.
 
 The acme-commons-starter-logging forces Spring Boot to use Log4j2 instead of the default use of Logback as a logging framework. 
 
-The acme-commons-starter-web forced Spring Boot to use Jetty as the servlet container instead of the default use of Tomcat.
+The acme-commons-starter-web forces Spring Boot to use Jetty as the servlet container instead of the default Tomcat.
   
  
 ## Steps in the acme-commons-starters module
@@ -26,7 +26,7 @@ The acme-commons-starter-web forced Spring Boot to use Jetty as the servlet cont
 ## Test
  Test if the newly added custom Spring Boot starters are working.
 1. Start Apache Artemis
-2. Start the Finance and / or Warehouse application. You will see the application is started with a Jetty servlet container en Log4j2 is used as the standard logging framework
+2. Start the Finance and / or Warehouse application. You will see the application is started with a Jetty servlet container and Log4j2 is used as the standard logging framework
 3. With a specific log4j2.xml configuration you can test if Log4j2 is used instead of Logback
 
 ## Artemis
