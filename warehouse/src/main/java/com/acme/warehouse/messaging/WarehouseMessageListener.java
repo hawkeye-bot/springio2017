@@ -18,6 +18,7 @@ import java.util.Map;
  * @author ajorritsma
  */
 @Component
+// TODO this specific messagelistener is obsolete
 public class WarehouseMessageListener {
 	/**
 	 * Repository to store messages

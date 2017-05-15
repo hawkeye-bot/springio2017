@@ -37,11 +37,8 @@ public class MessageListenerConfiguration {
 
 		acmeMessageRepository.save(acmeMessage);
 
-		MessageHandler messageHandler = messageHandlersMap.get(acmeMessage.getType());
-		messageHandler.handleMessage(acmeMessage.getPayload());
-	}
-
-	public Map<String, MessageHandler> getMessageHandlersMap() {
-		return messageHandlersMap;
+		// TODO
+		// Get the MessageHandler from the MessageHandler map to handle the message.
+		// The key of the MessageHandler map is the JMStype messageheader property.
 	}
 }

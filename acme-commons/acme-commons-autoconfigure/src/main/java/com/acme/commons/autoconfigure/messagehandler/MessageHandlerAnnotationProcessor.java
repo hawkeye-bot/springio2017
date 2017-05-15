@@ -10,9 +10,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.Assert;
-import org.springframework.util.ReflectionUtils;
-import org.springframework.util.ReflectionUtils.MethodCallback;
-import org.springframework.util.ReflectionUtils.MethodFilter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,66 +70,14 @@ public class MessageHandlerAnnotationProcessor implements BeanPostProcessor {
 	public Object postProcessAfterInitialization(final Object bean, final String beanName)
 			throws BeansException {
 
-		addMessageHandlersByBeanFactoryMethod(bean);
-		addMessageHandlersByClass(bean);
-
-		return bean;
-	}
-
-	/**
-	 * Find and add all {@link MessageHandler} factory beans.
-	 *
-	 * @param bean The bean which may be a {@link MessageHandler} factory.
-	 */
-	private void addMessageHandlersByBeanFactoryMethod(Object bean) {
-		ReflectionUtils.doWithMethods(bean.getClass(), getMethodCallback(bean), getMethodFilter());
-	}
-
-	/**
-	 * Find and add all {@link MessageHandler} with a {@link MessageHandlerBean} annotation.
-	 *
-	 * @param bean The bean that may be a {@link MessageHandler}.
-	 */
-	private void addMessageHandlersByClass(Object bean) {
 		Class beanClass = bean.getClass();
 		if (isMessageHandler(beanClass) && beanClass.isAnnotationPresent(MessageHandlerBean.class)) {
 			LOGGER.info("Class with annotation for MessageHandlerBean detected on bean {}", beanClass.getName());
-			MessageHandler messageHandler = (MessageHandler) bean;
-			MessageHandlerBean metadata = messageHandler.getClass().getAnnotation(MessageHandlerBean.class);
 
-			annotatedMessageHandlers.put(metadata, messageHandler);
+			// TODO add the MessageHandler with the metadata to the annotatedMessageHandlers map
 		}
-	}
 
-	/**
-	 * Classback class that adds the {@link MessageHandler} to the list with the found {@link MessageHandlerBean} factory methods.
-	 *
-	 * @param bean The bean containing the {@link MessageHandler} factory method.
-	 * @return The callback implementation is returned.
-	 */
-	private MethodCallback getMethodCallback(final Object bean) {
-		return method -> {
-			LOGGER.trace("Annotation method for MessageHandlerBean detected on bean {} method {}", bean.getClass().getName(),
-					method.getName());
-			MessageHandler handler = (MessageHandler) ReflectionUtils.invokeMethod(method, bean);
-			MessageHandlerBean metadata = method.getAnnotation(MessageHandlerBean.class);
-			annotatedMessageHandlers.put(metadata, handler);
-		};
-	}
-
-	/**
-	 * Filter to search for {@link MessageHandlerBean} factory methods.
-	 *
-	 * @return The filter implementation is returned.
-	 */
-	private MethodFilter getMethodFilter() {
-		return method -> {
-			boolean annotatieAanwezig = method.isAnnotationPresent(MessageHandlerBean.class);
-			boolean returnTypeCorrect = isMessageHandler(method.getReturnType());
-			LOGGER.trace("Annotation MessageHandlerBean present = {}, returnTypeCorrect = {} (returnType = {})", annotatieAanwezig,
-					returnTypeCorrect, method.getReturnType());
-			return annotatieAanwezig && returnTypeCorrect;
-		};
+		return bean;
 	}
 
 	/**

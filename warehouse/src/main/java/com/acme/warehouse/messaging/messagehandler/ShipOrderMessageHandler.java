@@ -20,6 +20,8 @@ import java.io.IOException;
  * @author ajorritsma
  */
 @Component
+// TODO Annotate this class with the @MessageHandlerBean with the correct JMS type
+// Implement this class with the correct interface
 public class ShipOrderMessageHandler implements MessageHandler {
 	/**
 	 * Logger to log events
