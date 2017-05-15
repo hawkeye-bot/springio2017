@@ -42,12 +42,8 @@ public class CommonsDatabaseInitializer implements DatabasePreInitializer {
 	public void initialize() {
 		LOGGER.debug("Initialize ACME-commons database-objects");
 		Flyway flyway = new Flyway();
-		flyway.setDataSource(dataSource);
-		flyway.setLocations(mapLocations(migrationScriptLocations));
-		flyway.setSqlMigrationPrefix("CMS_");
-		flyway.setTable("CMS_schema_version");
-		flyway.setBaselineOnMigrate(true);
-		flyway.migrate();
+
+		// TODO start Flyway with correct migration script locations
 	}
 
 	/**

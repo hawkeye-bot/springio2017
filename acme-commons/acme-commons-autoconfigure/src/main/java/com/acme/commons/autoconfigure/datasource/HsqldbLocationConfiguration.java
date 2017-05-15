@@ -16,6 +16,6 @@ class HsqldbLocationConfiguration {
 	@Bean
 	@ConditionalOnClass(name = "com.acme.commons.entities.AcmeMessage")
 	public MigrationScriptLocation cmsLocation() {
-		return () -> "cms/db/migration/hsqldb";
+		// TODO add a MigrationScriptLocation bean to add the SQL scripts from acme-commons-core
 	}
 }
