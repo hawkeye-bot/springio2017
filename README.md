@@ -15,7 +15,7 @@ The acme-commons-starter-web forces Spring Boot to use Jetty as the servlet cont
 3. Build and deploy the acme-commons-framework
 
 ## Steps in the warehouse application
-1. The Warehouse application is still legacy application based on Spring 3.2.8 the application has to be migrated to Spring Boot first. Take a look at the Finance application how a Spring Boot application will look like. When it turns out that the migration of warehouse application to Spring Boot costs too much time, this can be omitted.
+1. The Warehouse application is still legacy application based on Spring 3.2.8 the application has to be migrated to Spring Boot first. Take a look at the Finance application how a Spring Boot application will look like. If you find that the migration of the warehouse application to Spring Boot costs too much time, you can move forward to the next step.
 2. Add the dependency acme-commons-starter-logging  
 3. Add the dependency acme-commons-starter-web
 
