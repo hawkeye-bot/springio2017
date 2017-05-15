@@ -215,10 +215,4 @@
 			<url>file://${project.basedir}/../repository</url>
 		</repository>
 	</repositories>
-	<distributionManagement>
-		<repository>
-			<id>project-repo</id>
-			<url>file://${project.basedir}/repository</url>
-		</repository>
-	</distributionManagement>
 </project>

@@ -22,10 +22,4 @@
             <url>file://${rootUrl}/repository</url>
         </repository>
     </repositories>
-    <distributionManagement>
-        <repository>
-            <id>project-repo</id>
-            <url>file://${rootUrl}/repository</url>
-        </repository>
-    </distributionManagement>
 </project>

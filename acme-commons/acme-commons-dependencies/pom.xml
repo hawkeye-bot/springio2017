@@ -51,10 +51,10 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
+    <repositories>
         <repository>
             <id>project-repo</id>
             <url>file://${rootUrl}/repository</url>
         </repository>
-    </distributionManagement>
+    </repositories>
 </project>
