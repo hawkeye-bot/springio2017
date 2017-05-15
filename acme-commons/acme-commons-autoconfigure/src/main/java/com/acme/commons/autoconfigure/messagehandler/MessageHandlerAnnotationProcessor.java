@@ -5,16 +5,20 @@ import com.acme.commons.messaging.MessageHandlerBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.ReflectionUtils.MethodCallback;
 import org.springframework.util.ReflectionUtils.MethodFilter;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,7 +26,7 @@ import java.util.Map;
  * 
  * @author erhoeckx
  */
-@Configuration
+@Component
 @ConditionalOnClass(MessageHandlerBean.class)
 public class MessageHandlerAnnotationProcessor implements BeanPostProcessor {
 	/**
@@ -95,10 +99,10 @@ public class MessageHandlerAnnotationProcessor implements BeanPostProcessor {
 	 */
 	private void addMessageHandlersByClass(Object bean) {
 		Class beanClass = bean.getClass();
-		if (isMessageHandler(beanClass) && beanClass.isAnnotationPresent(MessageHandlerBean.class)) {
+		if (isMessageHandler(beanClass)) {
 			LOGGER.info("Class with annotation for MessageHandlerBean detected on bean {}", beanClass.getName());
 			MessageHandler messageHandler = (MessageHandler) bean;
-			MessageHandlerBean metadata = messageHandler.getClass().getAnnotation(MessageHandlerBean.class);
+			MessageHandlerBean metadata = AnnotationUtils.findAnnotation(beanClass, MessageHandlerBean.class);
 
 			annotatedMessageHandlers.put(metadata, messageHandler);
 		}
