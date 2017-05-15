@@ -37,7 +37,6 @@
                 <groupId>com.acme</groupId>
                 <artifactId>acme-commons-starter-logging</artifactId>
                 <version>${acme-commons.version}</version>
-                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>com.acme</groupId>
@@ -48,7 +47,6 @@
                 <groupId>com.acme</groupId>
                 <artifactId>acme-commons-starter-web</artifactId>
                 <version>${acme-commons.version}</version>
-                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -80,10 +78,4 @@
             <url>file://${rootUrl}/repository</url>
         </repository>
     </repositories>
-    <distributionManagement>
-        <repository>
-            <id>project-repo</id>
-            <url>file://${rootUrl}/repository</url>
-        </repository>
-    </distributionManagement>
 </project>
