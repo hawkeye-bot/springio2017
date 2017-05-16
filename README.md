@@ -12,3 +12,12 @@ The powerpoint that we'll be using during the workshop is available in all branc
 
 If you want to switch between labs, you can use the git checkout command:
 * git checkout <master/lab1/lab2/lab3/solution>
+
+## Artemis
+The software in the labs runs based on an Artemis JMS server. Included in the branches is a standalone installation of Artemis 2.0.0. You can start it using the following steps:
+
+1. Open a terminal in ${repository_home}/apache-artemis-2.0.0/springio/bin
+2. Run `artemis run`
+
+## Maven
+We've assumed that you can use an available internet connection to download any required maven depencies you need for the projects. However, in case this doesn't work for whatever reason, there is a complete repository in each branch at ${repository_home}/repository. You can either choose to copy this on top of your own maven repository, or simply point your maven installation to this repository folder using the settings.xml
