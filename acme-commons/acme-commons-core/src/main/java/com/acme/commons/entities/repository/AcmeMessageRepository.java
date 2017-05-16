@@ -2,6 +2,7 @@ package com.acme.commons.entities.repository;
 
 
 import com.acme.commons.entities.AcmeMessage;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author ajorritsma
  */
+@Component
 public class AcmeMessageRepository {
     @PersistenceContext
     private EntityManager entityManager;

@@ -21,8 +21,5 @@
 
     <properties>
         <java.version>1.8</java.version>
-
-    <!-- The next part is only to facilitate the local repository for the workshop -->
-        <rootUrl>${project.basedir}/../../..</rootUrl>
     </properties>
 </project>
