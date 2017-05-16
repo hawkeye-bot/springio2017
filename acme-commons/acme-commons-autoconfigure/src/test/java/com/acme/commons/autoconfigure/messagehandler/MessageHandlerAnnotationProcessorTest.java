@@ -3,10 +3,14 @@ package com.acme.commons.autoconfigure.messagehandler;
 import com.acme.commons.messaging.MessageHandler;
 import com.acme.commons.messaging.MessageHandlerBean;
 import org.junit.Test;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Map;
@@ -25,7 +29,7 @@ public class MessageHandlerAnnotationProcessorTest {
     public void testHandlerWithoutAnnotationsNotProcessed() {
         // prepare + execute
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext()) {
-            context.register(DataSourceAutoConfiguration.class, NotAnnotatedBeanConfiguration.class, MessageHandlerAnnotationProcessor.class,
+            context.register(DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class, JpaConfiguration.class, NotAnnotatedBeanConfiguration.class, MessageHandlerAnnotationProcessor.class,
                     MessageListenerConfiguration.class);
             context.refresh();
 
@@ -40,7 +44,7 @@ public class MessageHandlerAnnotationProcessorTest {
     public void testHandlerWithAnnotationProcessedDefault() {
         // prepare + execute
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext()) {
-            context.register(DataSourceAutoConfiguration.class, AnnotatedBeanConfiguration.class, MessageHandlerAnnotationProcessor.class, MessageListenerConfiguration.class);
+            context.register(DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class, JpaConfiguration.class, AnnotatedBeanConfiguration.class, MessageHandlerAnnotationProcessor.class, MessageListenerConfiguration.class);
             context.refresh();
 
             // verify
@@ -54,7 +58,7 @@ public class MessageHandlerAnnotationProcessorTest {
     public void testHandlerWithAnnotationOnClassProcessed() {
         // prepare + execute
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext()) {
-            context.register(DataSourceAutoConfiguration.class, MessageHandlerWithAnnotationOnClassConfiguration.class,
+            context.register(DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class, JpaConfiguration.class, MessageHandlerWithAnnotationOnClass.class,
                     MessageHandlerAnnotationProcessor.class, MessageHandlerAutoConfiguration.class);
             context.refresh();
 
@@ -63,6 +67,13 @@ public class MessageHandlerAnnotationProcessorTest {
             assertEquals(1, messageHandlersMap.size());
             assertNotNull(messageHandlersMap.get("MH_CLASS_ANN"));
         }
+    }
+
+    @Configuration
+    @EntityScan("com.acme.commons.entities")
+    @ComponentScan("com.acme.commons.entities")
+    public static class JpaConfiguration {
+
     }
 
     @Configuration
@@ -82,14 +93,11 @@ public class MessageHandlerAnnotationProcessorTest {
 
     }
 
-    @Configuration
-    public static class MessageHandlerWithAnnotationOnClassConfiguration {
-        @MessageHandlerBean(type = "MH_CLASS_ANN")
-        public static class MessageHandlerWithAnnotationOnClass implements MessageHandler {
-            @Override
-            public void handleMessage(String message) {
+    @MessageHandlerBean(type = "MH_CLASS_ANN")
+    public static class MessageHandlerWithAnnotationOnClass implements MessageHandler {
+        @Override
+        public void handleMessage(String message) {
 
-            }
         }
     }
 }

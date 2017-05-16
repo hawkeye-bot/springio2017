@@ -13,7 +13,6 @@
     </parent>
 
     <properties>
-        <rootUrl>${project.basedir}/../..</rootUrl>
         <java.version>1.8</java.version>
 
         <acme-commons.version>1.0.0-SNAPSHOT</acme-commons.version>

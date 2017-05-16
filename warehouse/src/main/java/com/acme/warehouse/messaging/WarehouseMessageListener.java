@@ -1,6 +1,7 @@
 package com.acme.warehouse.messaging;
 
-import com.acme.warehouse.domain.repository.AcmeMessageRepository;
+import com.acme.commons.entities.AcmeMessage;
+import com.acme.commons.entities.repository.AcmeMessageRepository;
 import com.acme.warehouse.messaging.messagehandler.MessageHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
@@ -38,7 +39,7 @@ public class WarehouseMessageListener {
 	public void sendInvoice(String message, @Headers MessageHeaders messageHeaders) {
 		AcmeMessage acmeMessage = new AcmeMessage();
 		acmeMessage.setType(messageHeaders.get("jms_type", String.class));
-		acmeMessage.setMessageId(messageHeaders.getId().toString());
+		acmeMessage.setMessageHeaderId(messageHeaders.getId().toString());
 		acmeMessage.setPayload(message);
 
 		acmeMessageRepository.save(acmeMessage);
