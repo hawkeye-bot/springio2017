@@ -1,6 +1,5 @@
 package com.acme.warehouse.domain.repository;
 
-import com.acme.warehouse.domain.AcmeMessage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

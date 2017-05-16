@@ -1,6 +1,5 @@
 package com.acme.warehouse.messaging;
 
-import com.acme.warehouse.domain.AcmeMessage;
 import com.acme.warehouse.domain.repository.AcmeMessageRepository;
 import com.acme.warehouse.messaging.messagehandler.MessageHandler;
 import org.springframework.beans.factory.annotation.Autowired;

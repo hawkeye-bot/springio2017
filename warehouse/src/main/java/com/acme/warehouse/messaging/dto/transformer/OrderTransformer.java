@@ -3,7 +3,6 @@ package com.acme.warehouse.messaging.dto.transformer;
 import com.acme.warehouse.domain.Article;
 import com.acme.warehouse.domain.Order;
 import com.acme.warehouse.domain.OrderLine;
-import com.acme.warehouse.domain.repository.ArticleRepository;
 import com.acme.warehouse.messaging.dto.ShipOrderVO;
 import org.apache.commons.collections4.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
