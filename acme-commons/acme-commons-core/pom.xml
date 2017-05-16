@@ -37,9 +37,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <!-- The next part is only to facilitate the local repository for the workshop -->
-    <properties>
-        <rootUrl>${project.basedir}/../..</rootUrl>
-    </properties>
 </project>
