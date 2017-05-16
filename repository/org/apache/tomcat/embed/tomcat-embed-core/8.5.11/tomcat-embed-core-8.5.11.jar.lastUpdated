@@ -1,5 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Fri Apr 28 21:09:40 CEST 2017
-file\://C\:\\Users\\hoeckxer\\Work\\Github\\springio2017\\finance/../repository/.error=Could not transfer artifact org.apache.tomcat.embed\:tomcat-embed-core\:jar\:8.5.11 from/to project-repo (file\://C\:\\Users\\hoeckxer\\Work\\Github\\springio2017\\finance/../repository)\: C\:\\Users\\hoeckxer\\Work\\Github\\springio2017\\repository\\org\\apache\\tomcat\\embed\\tomcat-embed-core\\8.5.11\\tomcat-embed-core-8.5.11.jar.part.lock (Access is denied)
-https\://repo.maven.apache.org/maven2/.lastUpdated=1493406580468
-@default-project-repo-file\://C\:\\Users\\hoeckxer\\Work\\Github\\springio2017\\finance/../repository/.lastUpdated=1493406577504
